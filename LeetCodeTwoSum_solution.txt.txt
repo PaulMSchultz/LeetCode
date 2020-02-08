@@ -1,0 +1,19 @@
+public class Solution
+{
+    public int[] TwoSum(int[] nums, int target) // leetcode TwoSum no hash
+    {        
+        for (int i = 0; i < nums.Length; i++) // cycling through the array
+        {
+            for (int x = i + 1; x < nums.Length; x++) // cycling through the array a number ahead of the last
+            {
+                if (nums[x] == target - nums[i]) // use target - i = x to check that x + i = target
+                {
+                    return new int[] { i, x }; // return array values
+                }
+            }
+        }
+        
+    throw new System.ArgumentException("No two sum solution"); // constraint == may not use the same element twice
+    
+    }
+}
