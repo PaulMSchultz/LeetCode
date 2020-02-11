@@ -1,0 +1,37 @@
+public class Solution
+{
+    public bool JudgeCircle(string moves)
+    {
+        int stepsX = 0; // x coordinate variable
+        int stepsY = 0; // y coordinate variable
+            
+        for (int i = 0; i < moves.Length; i++) // for each letter/move in the provided string
+        {
+            if (moves[i] == 'U') // up 'U' adds to the x coord, down 'D' takes away from it
+            {
+                stepsX++;                
+            }
+            else if (moves[i] == 'D')
+            {
+                stepsX--;                
+            }
+            else if (moves[i] == 'R') // right 'R' adds to the y coord, left 'L' takes away from it
+            {
+                stepsY++;                
+            }
+            else if (moves[i] == 'L')
+            {
+                stepsY--;
+            }
+        }
+        if (stepsX == 0 && stepsY == 0) // if the coord is (0,0) (x,y) you are in the same place you started
+        {
+            return true;            
+        }
+        else
+        {
+            return false;            
+        }
+        
+    }
+}
