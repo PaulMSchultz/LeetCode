@@ -1,0 +1,19 @@
+public class Solution
+{
+    public string DefangIPaddr(string address)
+    {        
+        for (int i = 0; i < address.Length; i++) // loop through the string indexes
+        {
+            if (address[i] == '.') // if that index has a '.'
+            {
+                address = address.Remove(i,1).Insert(i, "[.]"); // remove '.' and replace it with '[.]'
+                i += 3; // since you added 3 chars in the place of 1, you need to increase i to accomodate                
+            }
+            else
+            {
+                continue;                
+            }
+        }
+        return address;
+    }
+}
