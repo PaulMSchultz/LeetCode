@@ -1,0 +1,93 @@
+public class Solution
+{
+    public int RomanToInt(string s)
+    {      
+            int total = 0; // int 0 to keep adding to
+
+            for (int i = 0; i < s.Length; i++) // iterate through the string one char at a time
+            {
+                if (s[i] == 'I')
+                {
+                    if (i == s.Length - 1)//protects the last indexed char, so below statements dont go out past arr[]
+                    {
+                        total += 1;
+                    }
+                    else if (s[i + 1] == 'V') // if IV, add 4, then skip an index beacuse its accounted for
+                    {
+                        total += 4;
+                        i++;
+                    }
+                    else if (s[i + 1] == 'X')// if IX, add 9, then skip an index beacuse its accounted for
+                    {
+                        total += 9;
+                        i++;
+                    }
+                    else
+                    {
+                        total++;
+                    }
+                }
+                else if (s[i] == 'V') // add 5 for V
+                {    
+                    total+= 5;                    
+                }
+                else if (s[i] == 'X')
+                {
+                    if (i == s.Length - 1)//protects the last indexed char, so below statements dont go out past arr[]
+                    {
+                        total += 10;
+                    }
+                    else if (s[i + 1] == 'L') // if XL, add 40, then skip an index beacuse its accounted for
+                    {
+                        total += 40;
+                        i++;
+                    }
+                    else if (s[i + 1] == 'C')// if XC, add 90, then skip an index beacuse its accounted for
+                    {
+                        total += 90;
+                        i++;
+                    }
+                    else
+                    {
+                        total += 10;
+                    }
+                }
+                else if (s[i] == 'L') // add 50 for L
+                {
+                    total += 50;
+                }
+                else if (s[i] == 'C')
+                {
+                    if (i == s.Length - 1)//protects the last indexed char, so below statements dont go out past arr[]
+                    {
+                        total += 100;
+                    }
+                    else if (s[i + 1] == 'D')// if CD, add 400, then skip an index beacuse its accounted for
+                    {
+                        total += 400;
+                        i++;
+                    }
+                    else if (s[i + 1] == 'M')// if CM, add 900, then skip an index beacuse its accounted for
+                    {
+                        total += 900;
+                        i++;
+                    }
+                    else
+                    {
+                        total += 100;
+                    }
+                }
+                else if (s[i] == 'D') // add 500 for D
+                {
+                    total += 500;
+                }
+                else if (s[i] == 'M') // add 1000 for M
+                {
+                    total += 1000;
+                }
+
+
+            }
+            return total; // return totaled numerical sum as int
+    }
+}
