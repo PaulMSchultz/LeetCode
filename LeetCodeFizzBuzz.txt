@@ -1,0 +1,30 @@
+public class Solution
+{
+    public IList<string> FizzBuzz(int n)
+    {
+        IList<string> strList = new List<string>(); // created new ilist
+        
+         for (int i = 1; i <= n; i++) // iterate from 1 to n
+            {
+                if ((i % 3 == 0) && (i % 5 == 0)) //if i is a multiple of 3 and 5
+                {
+                    strList.Add("FizzBuzz"); // add FizzBuzz to the list instead of that number
+                }
+                else if (i % 3 == 0) // else if i is just a multiple of 3
+                {
+                    strList.Add("Fizz"); // add Fizz to the list instead of the number
+                }
+                else if (i % 5 == 0) // else if i is just a multiple of 5
+                {
+                    strList.Add("Buzz"); //add Buzz to the list instead of that number
+                }
+                else
+                {
+                    strList.Add($"{i}"); // else add i to the list as an int
+                }
+            }
+        
+        return strList; // return the created list
+    }
+    
+}
