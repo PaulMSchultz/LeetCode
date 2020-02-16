@@ -1,0 +1,27 @@
+public class Solution
+{
+    public int CountNegatives(int[][] grid) // leet contest week 176 -- rank 3878 / 5696 -- finished 1 of 4 problems -- 3pts
+    {
+        int counter = 0; // variables created
+        var m = grid.Length;
+        
+        
+        for (int i = 0; i < m; i++) // loop through main array
+        {
+            var n = grid[i].Length; // set .Length of nested arrays
+            
+            for (int k = 0; k < n; k++) // loop through nested arrays
+            {
+                if (grid[i][k] < 0) // check for negative numbers
+                {
+                    counter++; // if a neg, add 1 to the count
+                }
+            
+                //Console.WriteLine(grid[i][k]);
+            }
+            //Console.WriteLine(counter);
+        }
+        return counter; // return the amount of negative numbers in the nested arrays
+    }
+}
+
