@@ -1,0 +1,62 @@
+public class Solution (First try with nested for loops)
+{
+    public bool ContainsNearbyDuplicate(int[] nums, int k) // This works, however for large quantities it runs Time Limit Exceeded Because of O(n^2) for loops
+    {
+         for (int i = 0; i < nums.Length; i++) // nested for loops to iterate through entire array
+            {
+                for (int j = 1; j < nums.Length; j++)
+                {      
+                    if (nums[i] == nums[j]) // if the numbers in the array match
+                    {
+                        if (i != j && j > i) // makes sure that the same index isnt counted, and j > i for absolute value differences
+                        {
+                            if (j - i <= k) // if j - i is a distance less than or equal to the set value return true
+                            {
+                                return true;
+                            }   
+                        }
+                        else if (i != j && i > j)  // makes sure that the same index isnt counted, and i > j for absolute value differences
+                        {
+                            if (i - j <= (-k))  // if i - j is a distance less than or equal to the (negative)set value return true
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false; // if nothing matches and is within the index range given value return false
+    }
+}
+
+________________________________________________________________________________________________________________________________________________________________________________
+
+public class Solution
+{
+    public bool ContainsNearbyDuplicate(int[] nums, int k) // fater, more efficient solution using dictionary
+    {
+        var numsSet = new Dictionary<int,int>(); // new dict
+        
+        for (int i = 0; i < nums.Length; i++) // using only one for loop
+        { 
+            var num = nums[i];
+            
+            if (!numsSet.ContainsKey(num)) // if first time seeing this number, add it to the dictionary
+            { 
+                numsSet.Add(num, i);
+            }
+            else  // otherwise compare it to the the last time it was seen
+            { 
+                if (i - numsSet[num] <= k)
+                {
+                    return true; // if they're at most k distance apart, then return true
+                } 
+                else
+                {
+                    numsSet[num] = i; //otherwise update the dictionary to contain the most recent we've seen the number
+                } 
+            }
+        }
+        return false; // if we make it through the loop without returning, we know it's false
+    }
+}
