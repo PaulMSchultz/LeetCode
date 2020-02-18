@@ -1,0 +1,30 @@
+public class Solution
+{
+    public int Fib(int N)
+    {    
+        int idx = 3; // start the index at 3, since i know 0 retunrs 0, 1 and 2 return 1
+
+        var fibList = new List<int>(); // new list adding 0, 1, 1 (inx 0-2 values are the first 3 fib numbers)
+        fibList.Add(0);
+        fibList.Add(1);
+        fibList.Add(1);
+
+        if (N == 0) // if 0 return 0
+        {
+            return 0; 
+        }
+        if (N == 1 || N == 2) // if 1 or 2 return 1, the already added fib numbers in the list
+        {
+            return 1;
+        }
+        while (idx <= N) // starting the inx at 3 and working up to the input value
+        {
+            int result = (fibList[idx - 1]) + (fibList[idx - 2]); //add the 2 nums previous together and add to the total
+            fibList.Add(result); // add this into the list as the next fib numer
+            idx++; // go to the next idx
+        }
+        
+        return fibList[fibList.Count - 1]; // return the last index value fib number     
+        
+    }
+}
