@@ -1,0 +1,35 @@
+public class Solution
+{
+    public int Reverse(int x)
+    {
+        int rev = 0; // new int variable created that will be the reverse number
+        bool neg = false; // added to account for negative numbers
+        checked{ // check for overflow exceptions
+        try
+        {    
+            if (x < 0)
+            {
+                x = x * -1;
+                neg = true;
+            }
+        
+            while(x > 0) // while loop to continue to work through the entirety of x
+            {
+                rev = (x % 10) + (rev*10) ; // x%10 gives the remainder(isolated number starting from the right)
+                                            // add this to the place value of that number 
+                x = x / 10; // divide the original x input by 10 to step over to the next digit in the int       
+            
+            }
+        
+            if(neg) return rev*-1;
+
+            return rev; // once the while loop is finished; return the rev int
+        }
+        catch(OverflowException)
+        {
+            return 0; // if overflow
+            
+        }}
+        
+    }
+}
