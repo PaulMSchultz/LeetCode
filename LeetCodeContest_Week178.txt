@@ -1,0 +1,30 @@
+// LeetCode Contest week 178 -- questions 1 (00:33:18) of 4 -- score 3 pts -- rank 3939/5906
+
+
+// Given the array nums, for each nums[i] find out how many numbers in the array are smaller than it.
+// That is, for each nums[i] you have to count the number of valid j's such that j != i and nums[j] < nums[i].
+
+
+public class Solution
+{
+    public int[] SmallerNumbersThanCurrent(int[] nums)
+    {
+        int[] resultArr = new int[nums.Length];
+        int counter = 0;
+        
+        for (int i = 0; i < nums.Length; i++)
+        {
+            for (int j = 0; j < nums.Length; j++)
+            {
+                if (nums[i] > nums[j])
+                {                    
+                    counter++;
+                }
+            }
+            resultArr[i] = counter;
+            counter = 0;
+        }
+        return resultArr;
+        
+    }
+}
