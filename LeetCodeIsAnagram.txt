@@ -1,0 +1,36 @@
+public class Solution
+{
+    public bool IsAnagram(string s, string t)
+    {
+        if (string.IsNullOrWhiteSpace(s) || string.IsNullOrWhiteSpace(t))
+        {
+            return true;
+        }
+        else if (s.Length != t.Length)
+        {
+            return false;
+        }
+        else
+        {
+            s = SortString(s);
+            t = SortString(t);
+            
+            if (s.Contains(t))
+            {
+                return true;
+            } else
+            {
+                return false;
+            }                
+            
+        }
+        
+    }
+    
+    static string SortString(string input)
+    {
+        char[] characters = input.ToArray();
+        Array.Sort(characters);
+        return new string(characters);
+    }
+}
