@@ -1,0 +1,52 @@
+using System;
+using System.Text;
+
+namespace ConsoleApp2
+{
+    class Program
+    {
+        static void Main(string[] args) //LeetCodeCountAndSay
+        {
+            int n = 8;
+
+            StringBuilder prevStr = new StringBuilder("1"); // initialize new StringBuilder() starting at "1"
+
+            for (int i = 1; i < n; i++) // Starting at 1, loop through each layer up to n(the input number)
+            {
+                StringBuilder currStr = new StringBuilder(); // initialize the next layer using another StringBuilder()
+
+                char currChar = prevStr[0]; // the current char you are working with is the first in the starting index 0
+
+                int count = 1; // counter starting at the 1st layer
+
+                for (int k = 1; k <= prevStr.Length; k++) // nested for loop to compare chars in the string array of 'digits'
+                {
+                    if (k == prevStr.Length) // to start at length 1, add the count to the string, then the char, changing 1 to 11 (one 1)
+                    {
+                        currStr.Append(count);
+                        currStr.Append(currChar);
+                    }
+                    else if (prevStr[k] != currChar) // if the next char does not match you place it in the new string with its count
+                    {
+                        currStr.Append(count);
+                        currStr.Append(currChar);
+                        count = 1; // count stays at 1 or resets count back to one
+                        currChar = prevStr[k]; // selecting the next currchar as the next number
+                    }
+                    else if (prevStr[k] == currChar)
+                    {
+                        count++; // increase the count as the same number is found next to eachother
+                    } 
+
+                }// end nested loop
+
+                prevStr = currStr; // newly created layer 'string' is now the old one used to compare the next iteration to
+
+            }// end outside loop
+
+            Console.WriteLine(prevStr); //once the 'layer' n has been met return that string value
+
+        }// end main
+
+    }// end class program
+}
