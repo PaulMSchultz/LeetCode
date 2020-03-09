@@ -1,0 +1,33 @@
+public class Solution
+{
+    public int LastStoneWeight(int[] stones)
+    {
+         if (stones.Length == 1) { return stones[0]; }
+
+            int counter = stones.Length-1;
+
+            while (counter >= 0)
+            {
+                Array.Sort(stones);
+
+                int newStone = stones[stones.Length - 1] - stones[stones.Length - 2];            
+            
+                if (newStone > 0)
+                {
+                    stones[stones.Length - 1] = newStone;
+                    stones[stones.Length - 2] = 0;
+                    counter--;
+                }
+                else
+                {
+                    stones[stones.Length - 1] = 0;
+                    stones[stones.Length - 2] = 0;
+                    counter--;
+                }
+
+            }
+
+            Array.Sort(stones);
+            return stones[stones.Length - 1];
+    }
+}
