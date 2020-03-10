@@ -1,0 +1,47 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StudyGroup4
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string s = "abc";
+
+            Console.WriteLine(ValidPalindromeII(s));
+            
+        }
+
+        static public bool ValidPalindromeII(string s) // can replace on character
+        {
+            if(s.Length <= 2) { return true; } // if one or two chars return true
+
+            bool oneReplace = true; // your one replacement as true while you havnt used it yet
+
+            int i = 0; // used as an idexer value
+
+            while(i < s.Length / 2) // from both sides working towards the middle
+            {
+                if (s[i] == s[s.Length - i - 1]) // if the outsides are equal
+                {
+                    i++; // keep going
+                }
+                else
+                {                    
+                    if(oneReplace) // if you have your one replacement left
+                    {
+                        i++; // keep going
+                        oneReplace = false; // lose your replacement value
+                    }
+                    else { return false; } // out of replacements :( return false not a valid palindrome
+                }                
+            }
+            return true; // made it through return true
+        }
+    }
+}
