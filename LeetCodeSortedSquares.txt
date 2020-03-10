@@ -1,0 +1,19 @@
+public class Solution
+{
+    public int[] SortedSquares(int[] A)
+    {
+        if (A is null) { return A; }
+
+            int[] sqSortA = new int[A.Length];
+
+            for (int i = 0; i < A.Length; i++)
+            {
+                sqSortA[i] = (A[i]) * (A[i]);
+            }
+
+            Array.Sort(sqSortA);
+
+            return sqSortA;
+    }
+    
+}
