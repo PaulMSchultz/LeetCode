@@ -1,0 +1,32 @@
+public class Solution
+{
+    public string GenerateTheString(int n)
+    {
+            StringBuilder sb = new StringBuilder(); // to create retrun string type
+            
+            if(n==1)
+            {
+                return "a";
+            }
+            else if (n % 2 == 1) // if n is odd
+            {
+                while (n > 0)
+                {
+                    sb.Append("a"); //add odd number of 'a' to a string
+                    n--;
+                }
+                return sb.ToString();
+            }
+            else // if n is even
+            {
+                while (n > 1) // all instances of n except the last one
+                {
+                    sb.Append("a"); // adds an odd number of 'a' to the string
+                    n--; // decrements n
+                }
+                sb.Append("z"); // add the last char as 'z' to have both counts be odd
+
+                return sb.ToString();
+            }
+    }
+}
