@@ -1,0 +1,29 @@
+public class Solution
+{
+    public int BalancedStringSplit(string s)
+    {
+        int counter = 0;
+        int l = 0, r = 0;
+        
+        foreach (char c in s)
+        {
+            if(c=='R')
+            {
+                r++;
+            }
+            else if(c=='L')
+            {
+                l++;
+            }
+            
+            if(r==l && r != 0 && l != 0)
+            {
+                counter++;
+                r = 0;
+                l = 0;
+            }
+            
+        }
+        return counter;
+    }
+}
