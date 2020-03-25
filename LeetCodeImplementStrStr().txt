@@ -1,0 +1,16 @@
+public class Solution
+{
+    public int StrStr(string haystack, string needle)
+    {
+        if (needle.Length == 0 || needle == null) { return 0; }
+
+            if (!haystack.Contains(needle))
+            {
+                return -1;
+            }
+
+            int result = haystack.IndexOf(needle);
+
+            return result;
+    }
+}
