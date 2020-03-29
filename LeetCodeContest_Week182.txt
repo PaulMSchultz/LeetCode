@@ -1,0 +1,84 @@
+// LeetCode Contest week 182 -- questions 1 (31:16) of 4 (submitted #2 too late) -- score 3 pts -- rank 5473/7784
+
+// FindLuckyInteger in an Array
+public class Solution
+{
+    public int FindLucky(int[] arr)
+    {
+         if(arr == null || arr.Length == 0)
+            {
+                return -1;
+            }
+
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+
+            foreach(int num in arr)
+            {
+                if (!dict.ContainsKey(num))
+                {
+                    dict.Add(num, 1);
+                }
+                else
+                {
+                    dict[num] = dict[num] + 1;
+                }
+            }
+
+            List<int> lucky = new List<int>();
+
+            foreach (KeyValuePair<int, int> entry in dict)
+            {
+                int key = entry.Key;
+                int value = entry.Value;
+
+                if (key == value)
+                {
+                    lucky.Add(key);
+                }
+            }
+
+            if (lucky.Count == 0)
+            {
+                return -1;
+            }
+            else
+            {
+                return lucky.Max();
+            }
+    }
+}
+
+*******************************************************************************************************************************
+
+
+// LeetCode_CountNumberOfTeams
+public class Solution
+{
+    public int NumTeams(int[] rating)
+    {
+        int result = 0;
+
+            for (int i = 0; i < rating.Length-2; i++)
+            {
+                for (int j = i+1; j < rating.Length-1; j++)
+                {
+                    for (int k = j+1; k < rating.Length; k++)
+                    {
+                        if(i != j && j != k && i != k)
+                        {
+                            if ((i < j && j < k) || (i > j && j > k))
+                            {
+                                if ((rating[i] < rating[j] && rating[j] < rating[k]) || (rating[i] > rating[j] && rating[j] > rating[k]))
+                                {
+                                    result++;
+                                }
+                            }  
+                        }
+                        
+                    }
+                }
+            }
+
+            return result;
+    }
+}
