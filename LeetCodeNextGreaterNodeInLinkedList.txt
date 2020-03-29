@@ -1,0 +1,59 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int x) { val = x; }
+ * }
+ */
+public class Solution
+{
+    public int[] NextLargerNodes(ListNode head)
+    {
+        // find the length of the linked list
+            int counter = 1;
+            ListNode lengthNode = head;
+
+            while (lengthNode.next != null)
+            {
+                lengthNode = lengthNode.next;
+                counter++;
+            }
+
+            int[] resultArr = new int[counter]; // same length as the linked list using lengthNode
+
+            // Create a new node = to the head to traverse the linked list
+            ListNode travllerNode = head.next;
+            ListNode tempHead = head;
+                        
+            int idx = 0;
+
+            // Traverse the Linked List looking for the Next Largest value compared to the first idx...
+            while (tempHead.next != null)
+            {
+                if (travllerNode.val > tempHead.val)
+                {
+                    resultArr[idx++] = travllerNode.val;
+                    tempHead = tempHead.next;
+                    travllerNode = tempHead.next;
+                }
+                else
+                {
+                    if (travllerNode.next != null)
+                    {
+                        travllerNode = travllerNode.next;
+                    }
+                    else
+                    {
+                        resultArr[idx++] = 0;
+                        tempHead = tempHead.next;
+                        travllerNode = tempHead.next;
+                    }
+
+                }
+                
+            }
+
+            return resultArr;
+    }
+}
