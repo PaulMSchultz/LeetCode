@@ -1,0 +1,23 @@
+public class Solution
+{
+    public int[] CountBits(int num)
+    {
+            //create new list to hold output values
+            List<int> resultList = new List<int>();
+
+            // starting at 0 and working up toward input num
+            for (int i = 0; i <= num; i++)
+            {
+                // convert i to binary
+                var binary = Convert.ToString(i, 2);
+
+                // count the '1' bits in this number
+                var bitQuery = binary.Where(c => c == '1').Count();
+
+                // add the result to the list
+                resultList.Add(bitQuery);
+            }
+            // return the list.ToArray()
+            return resultList.ToArray();
+    }
+}

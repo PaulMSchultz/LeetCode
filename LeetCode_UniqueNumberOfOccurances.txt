@@ -1,0 +1,31 @@
+public class Solution
+{
+    public bool UniqueOccurrences(int[] arr)
+    {
+        if (arr.Length == 0) { return false; }
+            if (arr.Length == 1) { return true; }
+            
+            SortedDictionary<int, int> sd = new SortedDictionary<int, int> { };
+            foreach(var item in arr)
+            {
+                if (!sd.ContainsKey(item))
+                {
+                    sd.Add(item, 1);
+                }
+                else
+                {
+                    sd[item] += 1;
+                }
+            }
+
+            List<int> resultList = new List<int>();
+            foreach (KeyValuePair<int,int> pair in sd)
+            {
+                Console.WriteLine("Key is {0} : Value is {1}", pair.Key, pair.Value);                
+                if (resultList.Contains(pair.Value)) { return false; }
+                resultList.Add(pair.Value);
+            }
+
+            return true;
+    }
+}

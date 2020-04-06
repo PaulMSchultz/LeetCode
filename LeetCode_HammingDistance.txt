@@ -1,0 +1,35 @@
+public class Solution
+{
+    public int HammingDistance(int x, int y)
+    {
+        // Convert ints to binary
+        var _xBin = Convert.ToString(x, 2);
+        var _yBin = Convert.ToString(y, 2);
+
+        //pad the lesser length number with 0's to match length of the longer binary number
+        if(_xBin.Length < _yBin.Length)
+        {
+            _xBin = _xBin.PadLeft(_yBin.Length, '0');
+        }
+        else if (_yBin.Length < _xBin.Length)
+        {
+            _yBin = _yBin.PadLeft(_xBin.Length, '0');
+        }
+
+        //compare the binary strings for differences
+        int hammingDistance = 0;
+        for (int i = 0; i < _yBin.Length; i++)
+        {
+            if (_xBin[i] != _yBin[i])
+            {
+                hammingDistance++;
+            }
+        }
+
+        //Commented out section to see the binary conversions.
+        //Console.WriteLine(_xBin);
+        //Console.WriteLine(_yBin);
+
+        return hammingDistance;        
+    }
+}

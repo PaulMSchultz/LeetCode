@@ -1,0 +1,23 @@
+public class Solution
+{
+    public int HammingWeight(uint n)
+    {
+            // convert the input uint to binary string
+            var binary = Convert.ToString(n, 2);
+        
+            // trim leading zeros
+            binary = binary.TrimStart('0');
+
+            //count the number of '1' bits
+            int SumOfOneBits = 0;
+            foreach(char c in binary)
+            {
+                if(c == '1')
+                {
+                    SumOfOneBits++;
+                }
+            }
+            // return the hamming weight (number of 1 bits)
+            return SumOfOneBits;
+    }
+}
