@@ -1,0 +1,55 @@
+public class Solution
+{
+        public int[] SortByBits(int[] arr)
+        {
+            Array.Sort(arr);
+            SortedDictionary<int, int> sd = new SortedDictionary<int, int>();
+            List<int> duplicates = new List<int>();
+
+            foreach(var item in arr)
+            {
+                if (!sd.ContainsKey(item))
+                {
+                    sd.Add(item, CountBitsForSort(item));
+                }
+                else
+                {
+                    duplicates.Add(item);
+                }
+                                
+            }
+
+            var sortedDictByBits = from entry in sd
+                                   orderby entry.Value ascending
+                                   select entry;
+
+            int[] resultArr = new int[arr.Length];
+            int i = 0;
+            foreach(KeyValuePair<int,int> pair in sortedDictByBits)
+            {
+                while (duplicates.Contains(pair.Key))
+                {
+                    resultArr[i] = pair.Key;
+                    duplicates.Remove(pair.Key);
+                    i++;
+                }
+                resultArr[i] = pair.Key;
+                //Console.WriteLine(resultArr[i]);
+                i++;
+            }
+
+            return resultArr;
+        }
+    
+        public static int CountBitsForSort(int num)
+        {
+            // convert i to binary
+            var binary = Convert.ToString(num, 2);
+
+            // count the '1' bits in this number
+            var bitQuery = binary.Where(c => c == '1').Count();
+
+            // return the count of '1' bits
+            return bitQuery;
+        }
+}
