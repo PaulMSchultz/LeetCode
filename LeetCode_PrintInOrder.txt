@@ -1,0 +1,34 @@
+public class Foo
+{
+    int i = 0;
+    
+    public Foo()
+    {
+        
+    }
+
+    public void First(Action printFirst)
+    {
+        printFirst();
+        i++;
+    }
+
+    public void Second(Action printSecond)
+    {    
+        while (i != 1)
+        {
+            System.Threading.Thread.Sleep(1);
+        } 
+        printSecond();
+        i++;
+    }
+
+    public void Third(Action printThird)
+    {    
+        while (i != 2)
+        {
+            System.Threading.Thread.Sleep(1);
+        } 
+        printThird();
+    }
+}
