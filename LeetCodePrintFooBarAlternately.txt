@@ -1,0 +1,50 @@
+public class FooBar
+{
+    private int n;
+    int f = 0;
+    int b = 0;
+
+    public FooBar(int n)
+    {
+        this.n = n;
+    }
+
+    public void Foo(Action printFoo)
+    {
+        
+        for (int i = 0; i < n; i++)
+        {    
+                if(f == b)
+                {
+                    // printFoo() outputs "foo". Do not change or remove this line.
+        	        printFoo();
+                    f++;
+                }
+                else
+                {
+                    System.Threading.Thread.Yield();
+                    i--;
+                }
+        	
+        }
+    }
+
+    public void Bar(Action printBar)
+    {
+        
+        for (int i = 0; i < n; i++)
+        {   
+                if(b == f-1)
+                {
+                    // printBar() outputs "bar". Do not change or remove this line.
+        	        printBar();
+                    b++;
+                }
+                else
+                {
+                    System.Threading.Thread.Yield();
+                    i--;
+                }
+        }
+    }
+}
