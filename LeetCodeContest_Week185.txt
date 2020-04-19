@@ -1,0 +1,180 @@
+Leet Code Weekly Contest 185 Completed 1 of 4 (51:30) 2 mistakes (unfinished #3 below) 8977/14207 3 pts
+
+
+#1417. Reformat the String
+
+public class Solution
+{
+    public string Reformat(string s)
+    {
+            int countLetters = 0;
+            int countDigits = 0;
+            List<string> numList = new List<string>();
+            List<string> letList = new List<string>();
+            foreach (char c in s)
+            {
+                if (char.IsDigit(c))
+                {
+                    countDigits++;
+                    numList.Add(c.ToString());
+                }
+                else if (char.IsLetter(c))
+                { 
+                    countLetters++;
+                    letList.Add(c.ToString());
+                }
+            }
+
+            if (countLetters == 0 && countDigits == 0)
+            {
+                return s;
+            }
+            else if (countLetters == 1 && countDigits == 1)
+            {
+                return s;                
+            }
+            else if (s.Length == 1)
+            {
+                return s;
+            }
+
+            List<string> ls = numList;
+            foreach(var item in letList)
+            {
+                ls.Add(item);
+            }           
+
+
+            if (countLetters-1 == countDigits || countLetters == countDigits || countLetters+1 == countDigits)
+            {
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i <= ls.Count / 2 - 1; i++)
+                {
+                    if (countDigits >= countLetters)
+                    {
+                        if (ls.Count % 2 != 0 && i == ls.Count / 2)
+                        {
+                            sb.Append(ls[i]);
+                        }
+                        else
+                        {
+                            sb.Append(ls[i]);
+                            sb.Append(ls[ls.Count - 1 - i]);
+                        }                       
+                    }
+                    else
+                    {
+                        if(ls.Count % 2 != 0 && i == ls.Count / 2)
+                        {
+                            sb.Append(ls[i]);
+                        }
+                        else
+                        {
+                            sb.Append(ls[ls.Count - 1 - i]);
+                            sb.Append(ls[i]);
+                        }                        
+                    }                    
+                }
+
+                if(ls.Count%2 == 0)
+                {
+                    return sb.ToString();
+                }
+                else
+                {
+                    if (countLetters > countDigits)
+                    {
+                        sb.Append(ls[ls.Count / 2]);
+                    }
+                    else if (countDigits > countLetters)
+                    {
+                        sb.Append(ls[ls.Count / 2]);
+                    }
+
+                    return sb.ToString();
+                }
+                                
+            }
+            else
+            {
+                return string.Empty;
+            }
+    }
+}
+
+**********************************************************************************************
+
+#1419. Minimum number of Frogs Croaking (DNF yet...)
+
+            string s = "croakcroak";
+            string st = "crcoakroak";
+            Console.WriteLine(MinNumberOfFrogs(s));
+            Console.WriteLine(MinNumberOfFrogs(st));
+
+///////////// only works for croaks that are in order... i.e starting with ooa will still pass if there are even croaks, even if the letters are out of order. /////////////
+
+
+public static int MinNumberOfFrogs(string croakOfFrogs)
+        {
+            Dictionary<char, int> dict = new Dictionary<char, int>();
+            
+            foreach(char c in croakOfFrogs)
+            {
+                if (!dict.ContainsKey(c))
+                {
+                    dict.Add(c, 1);
+                }
+                else
+                {
+                    dict[c] += 1;
+                }
+            }
+            
+            foreach(KeyValuePair<char,int> pair in dict)
+            {
+                if(dict['c'] != pair.Value)
+                {
+                    return -1;
+                }
+            }            
+
+            StringBuilder sb = new StringBuilder();
+            int cCount = 0;
+            for (int i = 0; i < croakOfFrogs.Length; i++)
+            {
+                sb.Append(croakOfFrogs[i]);
+
+                if (croakOfFrogs[i] == 'c')
+                {
+                    sb.Insert(i + cCount," ",1);
+                    cCount++;
+                }
+            }
+
+            string s = sb.ToString();
+            var ls = s.Split(' ');
+
+            bool oneFrog = true;
+            foreach (var item in ls)
+            {
+                Console.WriteLine(item);
+                if(item != "croak")
+                {
+                    if(item != string.Empty)
+                    {
+                        oneFrog = false;
+                    }                    
+                }
+            }
+            Console.WriteLine();
+            if (oneFrog)
+            {
+                return 1;
+            }
+            else
+            {
+                return dict['c'];
+            }
+
+        }
