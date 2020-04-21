@@ -1,0 +1,136 @@
+public class Solution 
+{
+    public int MinNumberOfFrogs(string croakOfFrogs)
+    {
+         Dictionary<char, int> dict = new Dictionary<char, int>();
+            
+            foreach(char c in croakOfFrogs)
+            {
+                if (!dict.ContainsKey(c))
+                {
+                    dict.Add(c, 1);
+                }
+                else
+                {
+                    dict[c] += 1;
+                }
+
+                if (c == 'k')
+                {
+                    try
+                    {
+                        if (dict[c] > dict['a']) { return -1; }
+                    }
+                    catch (Exception e)
+                    {
+                        return -1;
+                    }
+                }
+                else if (c == 'a')
+                {
+                    try
+                    {
+                        if (dict[c] > dict['o']) { return -1; }
+                    }
+                    catch (Exception e)
+                    {
+                        return -1;
+                    }
+                    
+                }
+                else if (c == 'o')
+                {
+                    try
+                    {
+                        if (dict[c] > dict['r']) { return -1; }
+                    }
+                    catch (Exception e)
+                    {
+                        return -1;
+                    }
+                    
+                }
+                else if (c == 'r')
+                {
+                    try
+                    {
+                        if (dict[c] > dict['c']) { return -1; }
+                    }
+                    catch (Exception e)
+                    {
+                        return -1;
+                    }
+                    
+                }
+                else if (c == 'c')
+                {
+                    if (dict['c'] > 1)
+                    {
+                        try
+                        {
+                            if (dict['r'] > 0 && dict['o'] > 0 && dict['a'] > 0 && dict['k'] > 0)
+                            {
+                                dict['c'] -= 1;
+                                dict['r'] -= 1;
+                                dict['o'] -= 1;
+                                dict['a'] -= 1;
+                                dict['k'] -= 1;
+                            }
+                        }
+                        catch(Exception e)
+                        {
+                            continue;
+                        }
+                        
+                    }
+                }
+            }
+            
+            foreach(KeyValuePair<char,int> pair in dict)
+            {
+                if(dict['c'] != pair.Value)
+                {
+                    return -1;
+                }
+            }            
+
+            StringBuilder sb = new StringBuilder();
+            int cCount = 0;
+            for (int i = 0; i < croakOfFrogs.Length; i++)
+            {
+                sb.Append(croakOfFrogs[i]);
+
+                if (croakOfFrogs[i] == 'c')
+                {
+                    sb.Insert(i + cCount," ",1);
+                    cCount++;
+                }
+            }
+
+            string s = sb.ToString();
+            var ls = s.Split(' ');
+
+            bool oneFrog = true;
+            foreach (var item in ls)
+            {
+                //Console.WriteLine(item);
+                if(item != "croak")
+                {
+                    if(item != string.Empty)
+                    {
+                        oneFrog = false;
+                    }                    
+                }
+            }
+            //Console.WriteLine();
+
+            if (oneFrog)
+            {
+                return 1;
+            }
+            else
+            {
+                return dict['c'];
+            }
+    }
+}
