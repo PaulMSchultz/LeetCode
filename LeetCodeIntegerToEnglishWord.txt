@@ -1,0 +1,247 @@
+public class Solution
+{
+    public string NumberToWords(int num)
+    {
+           if (num == 0) { return "Zero"; }
+            string s = num.ToString();
+            bool oneNonZeroNumber = false;
+            int counter = 0;
+            foreach(char c in s)
+            {
+                if(c == '0')
+                {
+                    counter++;
+                }
+            }
+            if (counter + 1 == s.Length)
+            {
+                oneNonZeroNumber = true;
+            }
+
+            StringBuilder sub = new StringBuilder();            
+            List<int> ls = new List<int>();
+            for (int j = s.Length-1; j >= 0; j--)
+            {
+                if (sub.Length < 3) 
+                {
+                    sub.Insert(0, s[j].ToString(), 1);
+                    if (j-1 < 0)
+                    {
+                        string tmp = sub.ToString();
+                        ls.Insert(0, Convert.ToInt32(tmp));
+                        sub.Clear();
+                    }
+                }
+                else if (sub.Length == 3)
+                {
+                    string tmp = sub.ToString();
+                    ls.Insert(0, Convert.ToInt32(tmp));
+                    sub.Clear();
+                    j++;
+                }
+            }
+
+            int n = s.Length;
+            int place = 1;
+            int i = 1;
+            while (i < n)
+            {
+                place *= 10;
+                i++;
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int k = 0; k < ls.Count; k++)
+            {
+                string tmp = ls[k].ToString();
+                if (tmp.Length == 3)
+                {
+                    sb.Append(GetWord(tmp[0].ToString()) + " ");
+                    tmp = tmp.Remove(0, 1);
+                    sb.Append(GetPlace(100) + " ");
+                }
+
+                if (tmp.Length == 2)
+                {
+                    if (GetWord(tmp) != "")
+                    {
+                        if (k + 1 == ls.Count)
+                        {
+                            sb.Append(GetWord(tmp));
+                        }
+                        else
+                        {
+                            sb.Append(GetWord(tmp) + " ");
+                        }
+
+                    }
+                    else if (tmp[0] == '0' && tmp[1] != '0')
+                    {
+                        if (k + 1 == ls.Count)
+                        {
+                            sb.Append(GetWord(tmp[1].ToString()));
+                        }
+                        else
+                        {
+                            sb.Append(GetWord(tmp[1].ToString()) + " ");
+                        }
+                    }
+                    else
+                    {
+                        if (tmp[0] != '0')
+                        {
+                            sb.Append(GetWord(tmp[0] + "0") + " ");
+                        }
+                        
+                        if (k + 1 == ls.Count)
+                        {
+                            sb.Append(GetWord(tmp[1].ToString()));
+                        }
+                        else
+                        {
+                            if(tmp[0] != '0' && tmp[1] != '0')
+                            {
+                                sb.Append(GetWord(tmp[1].ToString()) + " ");
+                            }
+                            
+                        }
+                    }
+                }
+
+                if (tmp.Length == 1)
+                {
+                    if (k + 1 == ls.Count)
+                    {
+                        sb.Append(GetWord(tmp));
+                    }
+                    else
+                    {
+                        if (tmp[0] != '0') 
+                        {
+                            sb.Append(GetWord(tmp) + " ");
+                        }
+                        
+                    }
+                }
+
+                if (ls.Count != 1)
+                { 
+                    if (oneNonZeroNumber)
+                    {
+                        sb.Append(GetPlace(place));
+                        string strg = sb.ToString();
+                        strg = strg.Trim();
+
+                        return strg;
+
+                    }
+                    if (tmp != "0")
+                    {
+                        sb.Append(GetPlace(place) + " ");
+                    }
+                    
+                    place /= 1000;
+                    if (place == 100)
+                    {
+                        place = 0;
+                    }                    
+                }
+            }
+            string str = sb.ToString();
+            str = str.Trim();
+
+            return str;
+        }
+
+        public static string GetPlace(int place)
+        {
+            if (place == 1 || place == 10)
+            {
+                return "";
+            }
+            else if (place == 100)
+            {
+                return "Hundred";
+            }
+            else if (place == 1000 || place == 10000 || place == 100000)
+            {
+                return "Thousand";
+            }
+            else if (place == 1000000 || place == 10000000 || place == 100000000)
+            {
+                return "Million";
+            }
+            else if (place == 1000000000)
+            {
+                return "Billion";
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string GetWord(string num)
+        {
+            switch (num)
+            {
+                case "1":
+                    return "One";
+                case "2":
+                    return "Two";
+                case "3":
+                    return "Three";
+                case "4":
+                    return "Four";
+                case "5":
+                    return "Five";
+                case "6":
+                    return "Six";
+                case "7":
+                    return "Seven";
+                case "8":
+                    return "Eight";
+                case "9":
+                    return "Nine";
+                case "10":
+                    return "Ten";
+                case "11":
+                    return "Eleven";
+                case "12":
+                    return "Twelve";
+                case "13":
+                    return "Thirteen";
+                case "14":
+                    return "Fourteen";
+                case "15":
+                    return "Fifteen";
+                case "16":
+                    return "Sixteen";
+                case "17":
+                    return "Seventeen";
+                case "18":
+                    return "Eighteen";
+                case "19":
+                    return "Nineteen";
+                case "20":
+                    return "Twenty";
+                case "30":
+                    return "Thirty";
+                case "40":
+                    return "Forty";
+                case "50":
+                    return "Fifty";
+                case "60":
+                    return "Sixty";
+                case "70":
+                    return "Seventy";
+                case "80":
+                    return "Eighty";                    
+                case "90":
+                    return "Ninety";
+                default:
+                    return "";
+            }
+        }
+}
