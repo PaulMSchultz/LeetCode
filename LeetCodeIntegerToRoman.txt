@@ -1,0 +1,114 @@
+public class Solution
+{
+    public string IntToRoman(int num)
+    {        
+        int place = 1;        
+        StringBuilder sb = new StringBuilder();
+        
+        while(num > 0)
+        {
+            int temp = (num % 10) * place;
+            place *= 10;
+            num /= 10;
+            
+            switch (temp)
+            {                
+                case 1:
+                    sb.Insert(0, "I", 1);
+                    break;
+                case 2:
+                    sb.Insert(0, "II", 1);
+                    break;
+                case 3:
+                    sb.Insert(0, "III", 1);
+                    break;
+                case 4:
+                    sb.Insert(0, "IV", 1);
+                    break;
+                case 5:
+                    sb.Insert(0, "V", 1);
+                    break;
+                case 6:
+                    sb.Insert(0, "VI", 1);
+                    break;
+                case 7:
+                    sb.Insert(0, "VII", 1);
+                    break;
+                case 8:
+                    sb.Insert(0, "VIII", 1);
+                    break;
+                case 9:
+                    sb.Insert(0, "IX", 1);
+                    break;
+                case 10:
+                    sb.Insert(0, "X", 1);
+                    break;
+                case 20:
+                    sb.Insert(0, "XX", 1);
+                    break;
+                case 30:
+                    sb.Insert(0, "XXX", 1);
+                    break;                
+                case 40:
+                    sb.Insert(0, "XL", 1);
+                    break;
+                case 50:
+                    sb.Insert(0, "L", 1);
+                    break;
+                case 60:
+                    sb.Insert(0, "LX", 1);
+                    break;
+                case 70:
+                    sb.Insert(0, "LXX", 1);
+                    break;
+                case 80:
+                    sb.Insert(0, "LXXX", 1);
+                    break;
+                case 90:
+                    sb.Insert(0, "XC", 1);
+                    break;
+                case 100:
+                    sb.Insert(0, "C", 1);
+                    break;
+                case 200:
+                    sb.Insert(0, "CC", 1);
+                    break;
+                case 300:
+                    sb.Insert(0, "CCC", 1);
+                    break;
+                case 400:
+                    sb.Insert(0, "CD", 1);
+                    break;
+                case 500:
+                    sb.Insert(0, "D", 1);
+                    break;
+                case 600:
+                    sb.Insert(0, "DC", 1);
+                    break;
+                case 700:
+                    sb.Insert(0, "DCC", 1);
+                    break;
+                case 800:
+                    sb.Insert(0, "DCCC", 1);
+                    break;
+                case 900:
+                    sb.Insert(0, "CM", 1);
+                    break;
+                case 1000:
+                    sb.Insert(0, "M", 1);
+                    break;
+                case 2000:
+                    sb.Insert(0, "MM", 1);
+                    break;
+                case 3000:
+                    sb.Insert(0, "MMM", 1);
+                    break;
+                default:
+                    sb.Append("");
+                    break;
+            }            
+            
+        } 
+        return sb.ToString();
+    }
+}
