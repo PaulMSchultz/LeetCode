@@ -1,0 +1,36 @@
+public class Solution {
+    public int MaxScore(string s) {
+        int counter = 1;
+            int left = 0;
+            int right = 0;
+            int max = 0;
+
+            while (counter < s.Length)
+            {
+                string sLeft = s.Substring(0, counter);
+                string sRight = s.Substring(counter);
+                foreach(char c in sLeft)
+                {
+                    if(c == '0')
+                    {
+                        left++;
+                    }
+                }
+                foreach (char c in sRight)
+                {
+                    if(c == '1')
+                    {
+                        right++;
+                    }
+                }
+                if (left + right > max)
+                {
+                    max = left + right;
+                }
+                counter++;
+                left = 0;
+                right = 0;
+            }
+            return max; 
+    }
+}
