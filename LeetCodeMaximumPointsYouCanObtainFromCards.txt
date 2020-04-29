@@ -1,0 +1,30 @@
+public class Solution 
+{
+    public int MaxScore(int[] cardPoints, int k)
+    {        
+            int total = 0;
+
+            for (int x = cardPoints.Length - k; x < cardPoints.Length; x++)
+            {
+                total += cardPoints[x];
+            }
+
+            int i = 0;
+            int j = cardPoints.Length - k;
+            int max = total;
+
+            while (i < k)
+            {
+                total -= cardPoints[j];
+                total += cardPoints[i];
+                if (total > max)
+                {
+                    max = total;
+                }
+                i++;
+                j++;
+            }
+        
+            return max;
+    }
+}
