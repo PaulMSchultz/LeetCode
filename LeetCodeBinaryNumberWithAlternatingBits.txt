@@ -1,0 +1,39 @@
+public class Solution
+{
+    public bool HasAlternatingBits(int n)
+    {
+        string binary = Convert.ToString(n,2);
+        if(binary.Length < 2){ return true; }
+        char current = binary[0];
+        for(int i = 1; i < binary.Length; i++)
+        {
+            if(binary[i] == current){ return false; }
+            current = binary[i];
+        }
+        return true;
+    }
+}
+
+************************************************************
+
+public class Solution 
+{
+    public bool HasAlternatingBits(int n) 
+    {
+        int prevBit = n & 1;
+        n >>= 1;
+        while(n > 0)
+        {
+            if(prevBit == n % 2)
+            {
+                return false;
+            }
+            
+            prevBit = n % 2;
+            n >>= 1;
+        }
+        
+        return true;
+    }
+}
+
