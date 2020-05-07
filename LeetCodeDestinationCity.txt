@@ -1,0 +1,38 @@
+public class Solution
+{
+    public string DestCity(IList<IList<string>> paths)
+    {
+        if (paths.Count == 1)
+        {
+            return paths[0][1];
+        }
+        
+        List<string> first = new List<string>();
+        List<string> second = new List<string>();
+        
+        foreach(var ls in paths)
+        {
+            foreach(var city in ls)
+            {
+                if(city == ls[0])
+                {
+                    first.Add(city);
+                }
+                else if (city == ls[1])
+                {
+                    second.Add(city);   
+                }
+            }
+        }
+        string result = "";
+        
+        foreach(var item in second)
+        {
+            if (!first.Contains(item))
+            {
+                result = item;
+            }            
+        }
+        return result;
+    }
+}
