@@ -1,0 +1,52 @@
+public string ArrangeWords(string text)
+    {
+        text = text.ToLower();
+        
+        List<string> ls = text.Split(" ").ToList();
+        
+        bool stillMoving = true;
+        int counterChanges = 0;
+        int i = 0;
+        
+        while (stillMoving)
+        {
+            for(i = 0; i < ls.Count-1; i++)
+            {                
+                if(ls[i].Length > ls[i+1].Length)
+                {
+                    string temp = ls[i];
+                    ls[i] = ls[i+1];
+                    ls[i+1] = temp;
+                    counterChanges++;
+                }                
+            }
+            if (counterChanges > 0)
+            {
+                i = 0;
+                counterChanges = 0;
+            }
+            else
+            {
+                stillMoving = false;                
+            }
+        }
+        
+        
+        int counter = 1;
+        StringBuilder sb = new StringBuilder();
+        
+        foreach (var item in ls)
+        {
+            if (counter == ls.Count)
+            {
+                sb.Append(item);
+            }
+            else
+            {
+                sb.Append(item + " ");
+            }
+            counter++;            
+        }
+        sb[0] = char.ToUpper(sb[0]);
+        return sb.ToString();
+    }
